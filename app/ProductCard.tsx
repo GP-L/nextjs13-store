@@ -1,3 +1,5 @@
+"use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 import Stripe from "stripe";
 
@@ -10,8 +12,15 @@ const ProductCard: React.FC<Props> = (props) => {
   const { id: price_id, unit_amount: cost, product: productInfo } = product;
   const { name, description } = productInfo;
 
+  const router = useRouter();
+
+  const onProductClick = () => {
+    router.push("/product?price_id=" + price_id);
+  };
   return (
-    <div className="flex flex-col shadow bg-white hover:shadow-lg cursor-pointer">
+    <div
+      onClick={onProductClick}
+      className="flex flex-col shadow bg-white hover:shadow-lg cursor-pointer">
       <img
         src={productInfo.images[0]}
         alt={name}
