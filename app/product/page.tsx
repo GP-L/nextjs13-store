@@ -9,12 +9,21 @@ export default function ProductPage(props: Props) {
   const { searchParams } = props;
   const { price_id } = searchParams;
   const product = useCart((state) => state.product);
+  const addItemToCart = useCart((state) => state.addItemToCart);
   const { cost, productInfo, name, description } = product;
   console.log(product);
 
   if (!product?.name) {
     window.location.href = "/";
   }
+
+  const handleAddToCart = () => {
+    const newItem = {
+      quantity: 1,
+      price_id: price_id,
+    };
+    addItemToCart({ newItem });
+  };
 
   return (
     <div className="flex flex-col p-4">
@@ -32,7 +41,9 @@ export default function ProductPage(props: Props) {
             <p className="md:text-base">${cost / 100}</p>
           </div>
           <p className="test-sm flex-1">{description}</p>
-          <button className="bg-slate-700 text-white hover:bg-slate-500 cursor-pointer ml-auto px-4 py-2">
+          <button
+            onClick={handleAddToCart}
+            className="bg-slate-700 text-white hover:bg-slate-500 cursor-pointer ml-auto px-4 py-2">
             Add to Cart
           </button>
         </div>
