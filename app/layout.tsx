@@ -36,7 +36,11 @@ export default function RootLayout({
           <i className="fa-solid fa-cart-shopping cursor-pointer hover:text-slate-500"></i>
         </header>
         <div className="flex-1">{children}</div>
-        <footer>FOOTER</footer>
+        <footer className="flex items-center flex-wrap justify-center border-t border-solid border-slate-300 p-4 md:p-8">
+          <Link href={"Https://www.youtube.com"} target="_blank">
+            <i className="fa-brands fa-youtube text-slate-700 hover:text-slate-500 cursor-pointer text-2xl"></i>
+          </Link>
+        </footer>
       </body>
     </html>
   );
