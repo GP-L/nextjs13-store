@@ -21,6 +21,8 @@ export default function ProductPage(props: Props) {
     const newItem = {
       quantity: 1,
       price_id: price_id,
+      name,
+      cost,
     };
     addItemToCart({ newItem });
   };
@@ -38,7 +40,11 @@ export default function ProductPage(props: Props) {
         <div className="flex flex-col gap-2 p-4">
           <div className="flex item-center justify-between text-xl md:flex-col md:items-start">
             <h3>{name}</h3>
-            <p className="md:text-base">${cost / 100}</p>
+            {cost ? (
+              <p className="md:text-base">${cost / 100}</p>
+            ) : (
+              <p className="md:text-base">No price</p>
+            )}
           </div>
           <p className="test-sm flex-1">{description}</p>
           <button
