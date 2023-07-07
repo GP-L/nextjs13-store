@@ -2,17 +2,17 @@ import Stripe from "stripe";
 import { create } from "zustand";
 
 interface Product {
-  name: any;
-  description: any;
-  price_id: string;
-  cost: number | null;
-  productInfo: string | Stripe.Product | Stripe.DeletedProduct;
+  name?: any;
+  description?: any;
+  price_id?: string;
+  cost?: number | null;
+  productInfo?: string | Stripe.Product | Stripe.DeletedProduct;
 }
 
 interface Params {
-  newProduct: Product;
-  newItem: Product;
-  itemIndex: number;
+  newProduct?: Product;
+  newItem?: Product;
+  itemIndex?: number;
 }
 
 interface CartState {

@@ -20,7 +20,7 @@ export default function ProductPage(props: Props) {
   const handleAddToCart = () => {
     const newItem = {
       quantity: 1,
-      price_id: price_id,
+      price_id,
       name,
       cost,
     };
