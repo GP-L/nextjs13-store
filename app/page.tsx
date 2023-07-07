@@ -15,12 +15,14 @@ const getStripeProducts = async () => {
 export default async function Home() {
   const products = await getStripeProducts();
   return (
-    <main className="p-4 flex flex-col">
-      <div className="max-w-[1000px] w-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {products.map((product, productIndex) => {
-          return <ProductCard key={productIndex} product={product} />;
-        })}
-      </div>
+    <main>
+      <section className="m-auto max-w-[1140px] p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-6">
+          {products.map((product, productIndex) => {
+            return <ProductCard key={productIndex} product={product} />;
+          })}
+        </div>
+      </section>
     </main>
   );
 }

@@ -31,18 +31,24 @@ const ProductCard: React.FC<Props> = (props) => {
   return (
     <div
       onClick={onProductClick}
-      className="flex flex-col shadow bg-white hover:shadow-lg cursor-pointer">
-      <img
-        src={productInfo.images[0]}
-        alt={name}
-        className="w-full h-full object-cover"
-      />
-      <div className="flex flex-col gap-2 p-4">
-        <div className="flex items-center justify-between">
-          <h3>{name}</h3>
-          <p>${cost / 100}</p>
+      className="mb-6 flex overflow-hidden rounded-md shadow-md cursor-pointer">
+      <div className="relative w-48 flex-none">
+        <img
+          src={productInfo.images[0]}
+          alt={name}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
+      <div className="flex flex-col">
+        <div className="flex flex-wrap p-6">
+          <h3 className="flex-auto text-lg font-semibold text-slate-900">
+            {name}
+          </h3>
+          <p className="text-lg font-semibold text-slate-500">${cost / 100}</p>
+          <p className="mt-2 w-full flex-none text-sm font-medium text-slate-700">
+            {description}
+          </p>
         </div>
-        <p className="text-sm">{description}</p>
       </div>
     </div>
   );

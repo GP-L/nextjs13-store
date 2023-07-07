@@ -40,7 +40,7 @@ const Modal: React.FC = () => {
             className="fa-solid fa-xmark cursor-pointer hover:opacity-60"></i>
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] bg-slate-300 w-2/3"></div>
         </div>
-        <div className="p-4 overflow-scroll flex-1 flex flex-col gap-4">
+        <div className="ml-5 p-4 overflow-scroll flex-1 flex flex-col gap-4">
           {cartItems.length === 0 ? (
             <p>There is nothing in your cart</p>
           ) : (
@@ -67,7 +67,7 @@ const Modal: React.FC = () => {
         </div>
         <div
           onClick={checkout}
-          className="border border-solid border-slate-700 text-xl m-4 p-6 uppercase grid place-items-center hover:opacity-60 cursor-pointer">
+          className="border border-slate-950 text-xl m-4 p-6 uppercase grid place-items-center rounded-md font-semibold hover:bg-black hover:text-white hover:border-black cursor-pointer">
           Checkout
         </div>
       </div>
