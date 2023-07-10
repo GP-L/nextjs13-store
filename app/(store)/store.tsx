@@ -2,31 +2,30 @@ import Stripe from "stripe";
 import { create } from "zustand";
 
 interface Product {
-  name?: any;
-  description?: any;
-  price_id?: string;
-  cost?: number | null;
-  productInfo?: string | Stripe.Product | Stripe.DeletedProduct;
+  price_id: string;
+  name: string;
+  description: string;
+  cost: number | null;
+  quantity?: number;
+  productInfo: string | Stripe.Product | Stripe.DeletedProduct;
 }
 
-interface Params {
-  newProduct?: Product;
-  newItem?: Product;
-  itemIndex?: number;
-}
-
-interface CartState {
+interface State {
   cart: Product[];
   product: Product;
-  openModal: Boolean;
+  totalPrice: number;
+  openModal: boolean;
+}
+
+interface Actions {
   setOpenModal: () => void;
-  setProduct: (params: Params) => void;
-  addItemToCart: (params: Params) => void;
-  removeItemFromCart: (params: Params) => void;
+  setProduct: (product: Product) => void;
+  addItemToCart: (product: Product) => void;
+  removeItemFromCart: (product: Product) => void;
   emptyCart: () => void;
 }
 
-const useCart = create<CartState>()((set, get) => ({
+const useCart = create<State & Actions>()((set, get) => ({
   cart: [],
   product: {},
   openModal: false,
@@ -38,23 +37,36 @@ const useCart = create<CartState>()((set, get) => ({
       };
     });
   },
-  setProduct: (params) => {
-    const { newProduct } = params;
+  setProduct: (product: Product) => {
     set((state) => {
       return {
         ...state,
-        product: newProduct,
+        product: product,
       };
     });
   },
-  addItemToCart: (params) => {
-    const { newItem } = params;
+  addItemToCart: (product: Product) => {
     set((state) => {
-      const newCart = [...state.cart, newItem];
-      return {
-        ...state,
-        cart: newCart,
-      };
+      const cart = [...state.cart];
+      const productInCart = cart.find(
+        (item) => item.price_id === product.price_id
+      );
+      if (productInCart) {
+        const updatedCart = cart.map((item) =>
+          item.price_id === product.price_id
+            ? { ...item, quantity: (item.quantity as number) + 1 }
+            : item
+        );
+        return {
+          cart: updatedCart,
+        };
+      } else {
+        const updatedCart = [...state.cart, product];
+        return {
+          ...state,
+          cart: updatedCart,
+        };
+      }
     });
   },
   removeItemFromCart: (params) => {

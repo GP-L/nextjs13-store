@@ -19,7 +19,7 @@ const Modal: React.FC = () => {
     const res = await fetch("/api/checkout", {
       method: "POST",
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ lineItems }),
     });
@@ -58,7 +58,9 @@ const Modal: React.FC = () => {
                         <p>No price</p>
                       )}
                     </div>
-                    <p className="text-slate-600 text-sm">Quantity: 1</p>
+                    <p className="text-slate-600 text-sm">
+                      Quantity: {cartItem.quantity}
+                    </p>
                   </div>
                 );
               })}

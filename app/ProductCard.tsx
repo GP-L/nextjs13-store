@@ -18,14 +18,14 @@ const ProductCard: React.FC<Props> = (props) => {
   const router = useRouter();
 
   const onProductClick = () => {
-    const newProduct = {
+    const selectedProduct = {
+      price_id,
       name,
       description,
-      price_id,
       cost,
       productInfo,
     };
-    setProduct({ newProduct });
+    setProduct(selectedProduct);
     router.push("/product?price_id=" + price_id);
   };
   return (

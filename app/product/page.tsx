@@ -2,7 +2,7 @@
 import useCart from "../(store)/store";
 
 interface Props {
-  searchParams: String;
+  searchParams: string;
 }
 
 export default function ProductPage(props: Props) {
@@ -11,20 +11,21 @@ export default function ProductPage(props: Props) {
   const product = useCart((state) => state.product);
   const addItemToCart = useCart((state) => state.addItemToCart);
   const { cost, productInfo, name, description } = product;
-  console.log(product);
 
   if (!product?.name) {
     window.location.href = "/";
   }
 
   const handleAddToCart = () => {
-    const newItem = {
-      quantity: 1,
+    const selectedProduct = {
       price_id,
       name,
+      description,
       cost,
+      quantity: 1,
+      productInfo,
     };
-    addItemToCart({ newItem });
+    addItemToCart(selectedProduct);
   };
 
   return (
