@@ -13,7 +13,7 @@ const Modal: React.FC = () => {
     const lineItems = cartItems.map((cartItem) => {
       return {
         price: cartItem.price_id,
-        quantity: 1,
+        quantity: cartItem.quantity,
       };
     });
     const res = await fetch("/api/checkout", {
