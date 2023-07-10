@@ -47,20 +47,29 @@ const Modal: React.FC = () => {
             <>
               {cartItems.map((cartItem, itemIndex) => {
                 return (
-                  <div
-                    key={itemIndex}
-                    className="flex flex-col gap-2 border-l border-solid border-slate-700 px-2">
+                  <div key={itemIndex} className="flex flex-col gap-2  px-2">
                     <div className="flex items-center justify-between">
-                      <h2>{cartItem.name}</h2>
+                      <div className="flex">
+                        <div className=" pr-2">
+                          <img
+                            src={cartItem.productInfo.images[0]}
+                            alt={cartItem.name}
+                            className="rounded-md w-full object-cover w-20"
+                          />
+                        </div>
+                        <div>
+                          <h2>{cartItem.name}</h2>
+                          <p className="text-slate-600 text-sm">
+                            Quantity: {cartItem.quantity}
+                          </p>
+                        </div>
+                      </div>
                       {cartItem.cost ? (
                         <p>${cartItem.cost / 100}</p>
                       ) : (
                         <p>No price</p>
                       )}
                     </div>
-                    <p className="text-slate-600 text-sm">
-                      Quantity: {cartItem.quantity}
-                    </p>
                   </div>
                 );
               })}
