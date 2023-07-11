@@ -31,7 +31,7 @@ const Modal: React.FC = () => {
   };
 
   return ReactDom.createPortal(
-    <div className="fixed top-0 left-0 w-screen h-screen z-50">
+    <div className="fixed top-0 left-0 w-screen h-screen z-999">
       <div
         onClick={closeModal}
         className="bg-transparent absolute inset-0"></div>
@@ -59,7 +59,7 @@ const Modal: React.FC = () => {
                           <img
                             src={cartItem.productInfo.images[0]}
                             alt={cartItem.name}
-                            className="rounded-md w-full object-cover w-[100px]"
+                            className="rounded-md w-full object-cover w-[125px]"
                           />
                         </div>
                         <div>
@@ -79,7 +79,6 @@ const Modal: React.FC = () => {
                     </div>
                     <div className="flex items-center justify-between">
                       <span
-                        // onClick={removeProduct(itemIndex)}
                         onClick={() => {
                           removeProduct(itemIndex);
                         }}
@@ -88,7 +87,6 @@ const Modal: React.FC = () => {
                       </span>
                       <div>
                         <button
-                          // onClick={decreaseQuantity(cartItem)}
                           onClick={() => {
                             decreaseQuantity(cartItem);
                           }}
@@ -97,7 +95,6 @@ const Modal: React.FC = () => {
                         </button>
                         <span className="px-3">Quantity</span>
                         <button
-                          // onClick={increaseQuantity(cartItem)}
                           onClick={() => {
                             increaseQuantity(cartItem);
                           }}

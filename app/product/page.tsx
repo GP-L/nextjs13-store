@@ -63,29 +63,31 @@ export default function ProductPage(props: Props) {
             {description}
           </p>
           <div className="flex items-center mt-10">
-            <Dropdown>
-              <Dropdown.Button flat color="primary">
-                Quantity {selectedValue}
-              </Dropdown.Button>
-              <Dropdown.Menu
-                aria-label="Single selection actions"
-                color="primary"
-                disallowEmptySelection
-                selectionMode="single"
-                selectedKeys={selected}
-                onSelectionChange={setSelected}>
-                <Dropdown.Item key="1">1</Dropdown.Item>
-                <Dropdown.Item key="2">2</Dropdown.Item>
-                <Dropdown.Item key="3">3</Dropdown.Item>
-                <Dropdown.Item key="4">4</Dropdown.Item>
-                <Dropdown.Item key="5">5</Dropdown.Item>
-                <Dropdown.Item key="6">6</Dropdown.Item>
-                <Dropdown.Item key="7">7</Dropdown.Item>
-                <Dropdown.Item key="8">8</Dropdown.Item>
-                <Dropdown.Item key="9">9</Dropdown.Item>
-                <Dropdown.Item key="10">10</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <div className="z-0">
+              <Dropdown>
+                <Dropdown.Button flat color="primary">
+                  Quantity {selectedValue}
+                </Dropdown.Button>
+                <Dropdown.Menu
+                  aria-label="Single selection actions"
+                  color="primary"
+                  disallowEmptySelection
+                  selectionMode="single"
+                  selectedKeys={selected}
+                  onSelectionChange={setSelected}>
+                  <Dropdown.Item key="1">1</Dropdown.Item>
+                  <Dropdown.Item key="2">2</Dropdown.Item>
+                  <Dropdown.Item key="3">3</Dropdown.Item>
+                  <Dropdown.Item key="4">4</Dropdown.Item>
+                  <Dropdown.Item key="5">5</Dropdown.Item>
+                  <Dropdown.Item key="6">6</Dropdown.Item>
+                  <Dropdown.Item key="7">7</Dropdown.Item>
+                  <Dropdown.Item key="8">8</Dropdown.Item>
+                  <Dropdown.Item key="9">9</Dropdown.Item>
+                  <Dropdown.Item key="10">10</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
             <button
               onClick={() => handleAddToCart(selectedValue)}
               className="h-10 ml-5 rounded-xl bg-black px-6 font-semibold text-white hover:bg-white hover:text-black hover:border hover:border-2 hover:border-solid hover:border-black">
