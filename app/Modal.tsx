@@ -30,24 +30,6 @@ const Modal: React.FC = () => {
     router.push(data.session.url);
   };
 
-  // const handleRemoveItem = (itemIndex: number) => {
-  //   console.log("Button Clicked");
-  //   removeProduct(itemIndex);
-  //   console.log("Item Removed");
-  // };
-
-  // const handleIncreaseQuantity = (cartItem) => {
-  //   console.log("Button Clicked");
-  //   decreaseQuantity(cartItem);
-  //   console.log("Quantity decreased");
-  // };
-
-  // const handleDecreaseQuantity = (cartItem) => {
-  //   console.log("Button Clicked");
-  //   increaseQuantity(cartItem);
-  //   console.log("Quantity increased");
-  // };
-
   return ReactDom.createPortal(
     <div className="fixed top-0 left-0 w-screen h-screen z-50">
       <div
@@ -99,9 +81,7 @@ const Modal: React.FC = () => {
                       <span
                         // onClick={removeProduct(itemIndex)}
                         onClick={() => {
-                          console.log("Button Clicked");
                           removeProduct(itemIndex);
-                          console.log("Item Removed");
                         }}
                         className="text-red-500 p-2 cursor-pointer">
                         Remove
@@ -110,9 +90,7 @@ const Modal: React.FC = () => {
                         <button
                           // onClick={decreaseQuantity(cartItem)}
                           onClick={() => {
-                            console.log("Button Clicked");
                             decreaseQuantity(cartItem);
-                            console.log("Quantity decreased");
                           }}
                           className="cursor-pointer p-2">
                           -
@@ -121,9 +99,7 @@ const Modal: React.FC = () => {
                         <button
                           // onClick={increaseQuantity(cartItem)}
                           onClick={() => {
-                            console.log("Button Clicked");
                             increaseQuantity(cartItem);
-                            console.log("Quantity increased");
                           }}
                           className="cursor-pointer p-2">
                           +
