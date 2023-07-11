@@ -10,6 +10,7 @@ const Modal: React.FC = () => {
   const increaseQuantity = useCart((state) => state.increaseQuantity);
   const decreaseQuantity = useCart((state) => state.decreaseQuantity);
   const cartItems = useCart((state) => state.cart);
+  const totalPrice = useCart((state) => state.totalPrice);
   const router = useRouter();
 
   const checkout = async () => {
@@ -31,7 +32,7 @@ const Modal: React.FC = () => {
   };
 
   return ReactDom.createPortal(
-    <div className="fixed top-0 left-0 w-screen h-screen z-999">
+    <div className="fixed top-0 left-0 w-screen h-screen z-50">
       <div
         onClick={closeModal}
         className="bg-transparent absolute inset-0"></div>
@@ -45,7 +46,7 @@ const Modal: React.FC = () => {
         </div>
         <div className="ml-5 p-4 overflow-scroll flex-1 flex flex-col gap-10">
           {cartItems.length === 0 ? (
-            <p>There is nothing in your cart</p>
+            <p className="text-center">There is nothing in your cart</p>
           ) : (
             <>
               {cartItems.map((cartItem, itemIndex) => {
@@ -59,7 +60,7 @@ const Modal: React.FC = () => {
                           <img
                             src={cartItem.productInfo.images[0]}
                             alt={cartItem.name}
-                            className="rounded-md w-full object-cover w-[125px]"
+                            className="rounded-md w-full object-cover w-[100px]"
                           />
                         </div>
                         <div>
@@ -70,9 +71,7 @@ const Modal: React.FC = () => {
                         </div>
                       </div>
                       {cartItem.cost ? (
-                        <span>
-                          ${(cartItem.cost / 100) * cartItem.quantity}
-                        </span>
+                        <span>${cartItem.cost / 100}</span>
                       ) : (
                         <span>No price</span>
                       )}
@@ -80,7 +79,7 @@ const Modal: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <span
                         onClick={() => {
-                          removeProduct(itemIndex);
+                          removeProduct(cartItem, itemIndex);
                         }}
                         className="text-red-500 p-2 cursor-pointer">
                         Remove
@@ -109,10 +108,15 @@ const Modal: React.FC = () => {
             </>
           )}
         </div>
-        <div
-          onClick={checkout}
-          className="border border-slate-950 text-xl m-4 p-6 uppercase grid place-items-center rounded-md font-semibold hover:bg-black hover:text-white hover:border-black cursor-pointer">
-          Checkout
+        <div>
+          <div className="text-center">
+            <p className="text-2xl">Total: ${totalPrice}</p>
+          </div>
+          <div
+            onClick={checkout}
+            className="border border-slate-950 text-xl m-4 p-6 uppercase grid place-items-center rounded-md font-semibold hover:bg-black hover:text-white hover:border-black cursor-pointer">
+            Checkout
+          </div>
         </div>
       </div>
     </div>,
