@@ -21,8 +21,9 @@ interface Actions {
   setOpenModal: () => void;
   setProduct: (product: Product) => void;
   addItemToCart: (product: Product) => void;
-  removeItemFromCart: (product: Product) => void;
-  emptyCart: () => void;
+  removeItemFromCart: (productIndex: number) => void;
+  increaseQuantity: (product: Product) => void;
+  decreaseQuantity: (product: Product) => void;
 }
 
 const useCart = create<State & Actions>()((set, get) => ({
@@ -37,7 +38,7 @@ const useCart = create<State & Actions>()((set, get) => ({
       };
     });
   },
-  setProduct: (product: Product) => {
+  setProduct: (product) => {
     set((state) => {
       return {
         ...state,
@@ -45,7 +46,7 @@ const useCart = create<State & Actions>()((set, get) => ({
       };
     });
   },
-  addItemToCart: (product: Product) => {
+  addItemToCart: (product) => {
     set((state) => {
       const cart = [...state.cart];
       const productInCart = cart.find(
@@ -69,24 +70,40 @@ const useCart = create<State & Actions>()((set, get) => ({
       }
     });
   },
-  removeItemFromCart: (params) => {
-    const { itemIndex } = params;
+  removeItemFromCart: (productIndex) => {
     set((state) => {
-      const newCart = state.cart.filter((element, elementIndex) => {
-        return elementIndex !== itemIndex;
+      const updatedCart = state.cart.filter((element, elementIndex) => {
+        return elementIndex !== productIndex;
       });
       return {
         ...state,
-        cart: newCart,
+        cart: updatedCart,
       };
     });
   },
-  emptyCart: () => {
+  increaseQuantity: (product) => {
     set((state) => {
-      const newCart: Product[] = [];
+      const cart = [...state.cart];
+      const updatedCart = cart.map((item) =>
+        item.price_id === product.price_id
+          ? { ...item, quantity: (item.quantity as number) + 1 }
+          : item
+      );
       return {
-        ...state,
-        cart: newCart,
+        cart: updatedCart,
+      };
+    });
+  },
+  decreaseQuantity: (product) => {
+    set((state) => {
+      const cart = [...state.cart];
+      const updatedCart = cart.map((item) =>
+        item.price_id === product.price_id && product.quantity > 1
+          ? { ...item, quantity: (item.quantity as number) - 1 }
+          : item
+      );
+      return {
+        cart: updatedCart,
       };
     });
   },

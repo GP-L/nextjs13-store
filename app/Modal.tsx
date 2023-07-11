@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 
 const Modal: React.FC = () => {
   const closeModal = useCart((state) => state.setOpenModal);
+  const removeProduct = useCart((state) => state.removeItemFromCart);
+  const increaseQuantity = useCart((state) => state.increaseQuantity);
+  const decreaseQuantity = useCart((state) => state.decreaseQuantity);
   const cartItems = useCart((state) => state.cart);
   const router = useRouter();
 
@@ -27,6 +30,24 @@ const Modal: React.FC = () => {
     router.push(data.session.url);
   };
 
+  // const handleRemoveItem = (itemIndex: number) => {
+  //   console.log("Button Clicked");
+  //   removeProduct(itemIndex);
+  //   console.log("Item Removed");
+  // };
+
+  // const handleIncreaseQuantity = (cartItem) => {
+  //   console.log("Button Clicked");
+  //   decreaseQuantity(cartItem);
+  //   console.log("Quantity decreased");
+  // };
+
+  // const handleDecreaseQuantity = (cartItem) => {
+  //   console.log("Button Clicked");
+  //   increaseQuantity(cartItem);
+  //   console.log("Quantity increased");
+  // };
+
   return ReactDom.createPortal(
     <div className="fixed top-0 left-0 w-screen h-screen z-50">
       <div
@@ -38,23 +59,25 @@ const Modal: React.FC = () => {
           <i
             onClick={closeModal}
             className="fa-solid fa-xmark cursor-pointer hover:opacity-60"></i>
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] bg-slate-300 w-2/3"></div>
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] bg-slate-300 w-full"></div>
         </div>
-        <div className="ml-5 p-4 overflow-scroll flex-1 flex flex-col gap-4">
+        <div className="ml-5 p-4 overflow-scroll flex-1 flex flex-col gap-10">
           {cartItems.length === 0 ? (
             <p>There is nothing in your cart</p>
           ) : (
             <>
               {cartItems.map((cartItem, itemIndex) => {
                 return (
-                  <div key={itemIndex} className="flex flex-col gap-2  px-2">
+                  <div
+                    key={itemIndex}
+                    className="flex flex-col gap-2 px-2 pb-4 border-b border-solid border-slate-300">
                     <div className="flex items-center justify-between">
                       <div className="flex">
-                        <div className=" pr-2">
+                        <div className="pr-2">
                           <img
                             src={cartItem.productInfo.images[0]}
                             alt={cartItem.name}
-                            className="rounded-md w-full object-cover w-20"
+                            className="rounded-md w-full object-cover w-[100px]"
                           />
                         </div>
                         <div>
@@ -65,10 +88,47 @@ const Modal: React.FC = () => {
                         </div>
                       </div>
                       {cartItem.cost ? (
-                        <p>${cartItem.cost / 100}</p>
+                        <span>
+                          ${(cartItem.cost / 100) * cartItem.quantity}
+                        </span>
                       ) : (
-                        <p>No price</p>
+                        <span>No price</span>
                       )}
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span
+                        // onClick={removeProduct(itemIndex)}
+                        onClick={() => {
+                          console.log("Button Clicked");
+                          removeProduct(itemIndex);
+                          console.log("Item Removed");
+                        }}
+                        className="text-red-500 p-2 cursor-pointer">
+                        Remove
+                      </span>
+                      <div>
+                        <button
+                          // onClick={decreaseQuantity(cartItem)}
+                          onClick={() => {
+                            console.log("Button Clicked");
+                            decreaseQuantity(cartItem);
+                            console.log("Quantity decreased");
+                          }}
+                          className="cursor-pointer p-2">
+                          -
+                        </button>
+                        <span className="px-3">Quantity</span>
+                        <button
+                          // onClick={increaseQuantity(cartItem)}
+                          onClick={() => {
+                            console.log("Button Clicked");
+                            increaseQuantity(cartItem);
+                            console.log("Quantity increased");
+                          }}
+                          className="cursor-pointer p-2">
+                          +
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );
