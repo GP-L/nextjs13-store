@@ -10,13 +10,14 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
 
-const navigation = [
-  { name: "Store", href: "#" },
-  { name: "Return Policy", href: "#" },
-  { name: "About Us", href: "#" },
-];
+interface Props {
+  navigation: {
+    name: string;
+    href: string;
+  }[];
+}
 
-const Header: React.FC = () => {
+const Header: React.FC<Props> = ({ navigation }) => {
   const cartItems = useCart((state) => state.cart);
   const openModal = useCart((state) => state.openModal);
   const setOpenModal = useCart((state) => state.setOpenModal);
@@ -24,19 +25,22 @@ const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
+    <header className="z-50">
       {openModal && <Modal />}
       <nav
-        className="flex items-center justify-between p-6 lg:px-8"
+        className="flex items-center justify-between p-6 max-w-screen-xl m-auto lg:px-8"
         aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link href={"/"} className="-m-1.5 p-1.5">
+          <Link href={"/"} className="flex -m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img
-              className="h-8 w-auto"
+              className="h-8 mr-3 w-auto"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
               alt=""
             />
+            <span className="self-center text-2xl font-semibold whitespace-nowrap">
+              Glasses
+            </span>
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -44,7 +48,7 @@ const Header: React.FC = () => {
             className="flex text-sm font-semibold leading-6 text-gray-900 cursor-pointer mr-5"
             onClick={setOpenModal}>
             {cartItems.length > 0 && (
-              <div className="absolute aspect-square h-5 sm:h-6 pointer-events-none grid place-items-center top-0 bg-blue-400 text-white rounded-full right-0 -translate-y-1/2 translate-x-1/2">
+              <div className="absolute top-6 right-14.5 aspect-square h-5 sm:h-6 pointer-events-none grid place-items-center bg-slate-900 text-white rounded-full -translate-y-1/2 translate-x-1/2">
                 <p className="text-xs sm:text-sm">{cartItems.length}</p>
               </div>
             )}
@@ -74,7 +78,7 @@ const Header: React.FC = () => {
           Cart
           <span className="ml-2">
             {cartItems.length > 0 && (
-              <div className="absolute aspect-square h-5 sm:h-6 pointer-events-none grid place-items-center top-0 bg-blue-400 text-white rounded-full right-0 -translate-y-1/2 translate-x-1/2">
+              <div className="absolute top-6 right-6.5 aspect-square h-5 sm:h-6 pointer-events-none grid place-items-center bg-blue-400 text-white rounded-full -translate-y-1/2 translate-x-1/2">
                 <p className="text-xs sm:text-sm">{cartItems.length}</p>
               </div>
             )}
@@ -90,7 +94,10 @@ const Header: React.FC = () => {
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <Link href={"#"} className="-m-1.5 p-1.5">
+            <Link
+              href={"/"}
+              onClick={() => setMobileMenuOpen(false)}
+              className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
                 className="h-8 w-auto"
@@ -113,6 +120,7 @@ const Header: React.FC = () => {
                   <Link
                     key={item.name}
                     href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                     {item.name}
                   </Link>

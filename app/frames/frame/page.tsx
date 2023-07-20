@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import useCart from "../(store)/store";
+import useCart from "../../(store)/store";
 import { Dropdown } from "@nextui-org/react";
 
 interface Props {
