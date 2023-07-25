@@ -39,30 +39,27 @@ export default function ProductPage(props: Props) {
   };
 
   return (
-    <div className="flex flex-col p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-[1000px] mx-auto">
-        <div className="md:p-2">
+    <div className="p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 w-full max-w-screen-xl mx-auto">
+        <div>
           <img
             src={productInfo.images[0]}
             alt={name}
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="flex flex-wrap p-6">
-          <h3 className="flex-auto text-4xl font-semibold text-slate-900">
+        <div className="p-6">
+          <h3 className="flex-auto text-4xl mb-10 font-semibold text-slate-900">
             {name}
           </h3>
           {cost ? (
-            <p className="text-2xl mt-1.5 font-semibold text-slate-500">
+            <p className="text-2xl font-semibold text-slate-500">
               ${cost / 100}
             </p>
           ) : (
             <p className="text-lg font-semibold text-slate-500">No price</p>
           )}
-          <p className="mt-10 w-full flex-none text-lg font-medium text-slate-700">
-            {description}
-          </p>
-          <div className="flex items-center mt-10">
+          <div className="flex items-center mt-5">
             <div className="z-0">
               <Dropdown>
                 <Dropdown.Button flat color="primary">
