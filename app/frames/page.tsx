@@ -16,11 +16,13 @@ const getStripeProducts = async () => {
 export default async function Store() {
   const products = await getStripeProducts();
   return (
-    <div className="m-auto max-w-screen-xl">
-      <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 mt-10 mb-20 sm:text-6xl">
-        Frames
-      </h1>
-      <div className="grid gap-x-6 grid-cols-1 p-4 2xl:p-0 sm:grid-cols-2 md:grid-cols-3">
+    <div>
+      <div className="flex items-center justify-center bg-[url('https://source.unsplash.com/KS0eepLw4uM')] bg-cover bg-center bg-black bg-opacity-30 bg-blend-overlay max-w-none min-h-[200px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px]">
+        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+          Frames
+        </h1>
+      </div>
+      <div className="max-w-screen-xl m-auto grid gap-6 grid-cols-1 my-10 px-4 xl:px-0 sm:grid-cols-2 md:grid-cols-3">
         {products.map((product, productIndex) => {
           return <ProductCard key={productIndex} product={product} />;
         })}

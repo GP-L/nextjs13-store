@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 const navigation = [
   { name: "Frames", href: "/frames" },
-  { name: "Return Policy", href: "#" },
+  { name: "Return Policy", href: "/return-policy" },
   { name: "About Us", href: "#" },
 ];
 

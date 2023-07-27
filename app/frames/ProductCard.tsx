@@ -29,8 +29,8 @@ const ProductCard: React.FC<Props> = (props) => {
     router.push("/frames/frame?price_id=" + price_id);
   };
   return (
-    <div onClick={onProductClick} className="mb-6 shadow-md cursor-pointer">
-      <div className="">
+    <div onClick={onProductClick} className="shadow-md cursor-pointer">
+      <div>
         <img src={productInfo.images[0]} alt={name} className="w-full" />
       </div>
       <div className="flex flex-col gap-y-1 text-center p-6 text-lg font-medium">
