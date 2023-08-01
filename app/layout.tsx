@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 const navigation = [
   { name: "Frames", href: "/frames" },
   { name: "Return Policy", href: "/return-policy" },
-  { name: "About Us", href: "#" },
+  { name: "About Us", href: "/about-us" },
 ];
 
 export const metadata = {

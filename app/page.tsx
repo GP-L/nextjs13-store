@@ -20,13 +20,14 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div>
+      <div className="hidden lg:inline-block">
         <img
           src="https://source.unsplash.com/Mv7kokwzIMw"
           alt=""
           className="w-full"
         />
       </div>
+      <div className="lg:hidden bg-[url('https://source.unsplash.com/Mv7kokwzIMw')] bg-cover bg-center min-h-[700px]"></div>
     </div>
   );
 }
