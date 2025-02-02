@@ -15,19 +15,20 @@ export default function Home() {
           </p>
           <Link
             href={"/frames"}
-            className="inline-block mt-10 rounded-md border border-gray-900 bg-gray-900 px-8 py-3 text-center font-medium text-white hover:bg-white hover:text-gray-900">
+            className="inline-block mt-10 rounded-md border border-gray-900 bg-gray-900 px-8 py-3 text-center font-medium text-white hover:bg-white hover:text-gray-900"
+          >
             Shop Collection
           </Link>
         </div>
       </div>
       <div className="hidden lg:inline-block">
         <img
-          src="https://source.unsplash.com/Mv7kokwzIMw"
+          src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?q=80&w=2576&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt=""
           className="w-full"
         />
       </div>
-      <div className="lg:hidden bg-[url('https://source.unsplash.com/Mv7kokwzIMw')] bg-cover bg-center min-h-[700px]"></div>
+      <div className="lg:hidden bg-[url('https://images.unsplash.com/photo-1614715838608-dd527c46231d?q=80&w=2576&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center min-h-[700px]"></div>
     </div>
   );
 }

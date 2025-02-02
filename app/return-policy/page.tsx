@@ -1,7 +1,7 @@
 export default function ReturnPolicy() {
   return (
     <div>
-      <div className="flex items-center justify-center bg-[url('https://source.unsplash.com/0GfPlommtxM')] bg-cover bg-center bg-black bg-opacity-20 bg-blend-overlay min-h-[200px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px]">
+      <div className="flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1582142407894-ec85a1260a46?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center bg-black bg-opacity-20 bg-blend-overlay min-h-[200px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px]">
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
           Return Policy
         </h1>
